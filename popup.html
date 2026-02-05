@@ -6,42 +6,41 @@
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Google image button */
     .google-image-btn {
       border: none;
       background: none;
       padding: 0;
       cursor: pointer;
-      width: 100%;
+      width: 85%;
+      margin: 1cm auto 0;
+      display: block;
     }
 
     .google-image-btn img {
       width: 100%;
-      height: auto;
       display: block;
     }
 
-    /* Spacing block under Google button */
-    .google-auth-section {
-      margin-bottom: 18px; /* 👈 BIGGER spacing */
-      text-align: center;
-    }
+    .google-auth-section { text-align: center; margin-bottom: 18px; }
+    .account-helper { margin-top: 8px; font-size: 12px; }
+    .account-helper a { color: #1a73e8; text-decoration: none; }
+    .account-helper a:hover { text-decoration: underline; }
 
-    /* Change account helper */
-    .account-helper {
-      margin-top: 8px;
-      font-size: 12px;
-    }
+    input[type="file"] { display: none; }
 
-    .account-helper a {
-      color: #1a73e8;
-      text-decoration: none;
-      cursor: pointer;
+    .subject-box { text-align: center; margin-bottom: 16px; }
+    .subject-box h1 { font-size: 14px; margin-bottom: 6px; }
+    .subject-box input {
+      width: 100%; padding: 8px 10px; font-size: 14px;
+      border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box;
     }
+    .subject-box small { display: block; font-size: 11px; color: #666; margin-top: 4px; }
 
-    .account-helper a:hover {
-      text-decoration: underline;
-    }
+    .inline-actions { display: flex; gap: 8px; }
+    .inline-actions .btn { flex: 1; }
+
+    /* disable hover move effects */
+    .btn { transform: none !important; }
   </style>
 </head>
 
@@ -49,54 +48,40 @@
   <div class="popup-container">
     <div class="popup-card">
 
-
-      <!-- GOOGLE AUTH SECTION -->
+      <!-- GOOGLE AUTH -->
       <div class="google-auth-section">
-        <!-- Continue with Google = REAL BUTTON -->
-        <button
-          id="googleAuthBtn"
-          class="google-image-btn"
-          aria-label="Connect Google account"
-        >
-          <img
-            src="icons/web_neutral_sq_ctn@4x.png"
-            alt="Continue with Google"
-          />
+        <button id="googleAuthBtn" class="google-image-btn">
+          <img src="icons/web_neutral_sq_ctn@4x.png" alt="Continue with Google"/>
         </button>
-
-        <!-- Change account (ALWAYS visible) -->
         <div class="account-helper">
           Need another account?
-          <a
-            href="https://accounts.google.com/AccountChooser"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Change Google account
-          </a>
+          <a href="https://accounts.google.com/AccountChooser" target="_blank">Change Google account</a>
         </div>
       </div>
 
-      <!-- MAIN ACTION BUTTONS -->
-      <div class="button-group button-panel">
+      <!-- FILE INPUTS -->
+      <input type="file" id="csvInput" accept=".csv" />
+      <input type="file" id="htmlInput" accept=".html,.htm" />
 
-        <!-- Edit HTML Template (Orange secondary) -->
-        <button id="editTemplateBtn" class="btn primary">
-          <span aria-hidden="true">✏️</span>
-          <span>Edit HTML Template</span>
-        </button>
+      <!-- EMAIL SUBJECT -->
+      <div class="subject-box">
+        <h1>Email topic</h1>
+        <input id="subjectInput" type="text" placeholder="Enter email subject" />
+        <small>This text will be used as the email subject</small>
+      </div>
 
-        <!-- Edit CSV (Purple secondary) -->
-        <button id="editCsvBtn" class="btn secondary">
-          <span aria-hidden="true">🧾</span>
-          <span>Edit CSV</span>
-        </button>
+      <!-- ACTION BUTTONS -->
+      <div class="button-group">
 
-        <!-- Send Emails (Primary green) -->
-        <button id="sendEmailsBtn" class="btn accent">
-          <span aria-hidden="true">🚀</span>
-          <span>Send Emails</span>
-        </button>
+        <button id="editTemplateBtn" class="btn primary">✏️ Select HTML Template</button>
+        <button id="editCsvBtn" class="btn primary">🧾 Select CSV</button>
+
+        <div class="inline-actions">
+          <button id="previewBtn" class="btn secondary">👁 Preview</button>
+          <button id="sendTestBtn" class="btn secondary">✉️ Send Test Email</button>
+        </div>
+
+        <button id="sendEmailsBtn" class="btn accent">🚀 Send Emails</button>
       </div>
 
       <!-- STATUS -->

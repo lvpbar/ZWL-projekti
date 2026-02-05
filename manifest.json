@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+"name": "Gmail Bulk Sender",
+"description": "A simple Chrome extension for sending small batches of personalized emails from your Gmail account using local CSV and HTML files.",
+"version": "2.6",
+  "author": "Aleksandrs Rusaks",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "identity"
+  ],
+  "host_permissions": [
+    "https://www.googleapis.com/*"
+  ],
+  "oauth2": {
+    "client_id": "571747273357-llmtkugm9r5gkap2ch5glq4rfr546tv9.apps.googleusercontent.com",
+    "scopes": [
+      "openid",
+      "email",
+      "https://www.googleapis.com/auth/gmail.send",
+      "https://www.googleapis.com/auth/drive.readonly"
+    ]
+  }
+}
